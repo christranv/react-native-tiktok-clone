@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TabBarIcon from '../components/TabBarIcon';
-import { Home, Discover, Inbox, User } from '../screens'
-import { Image } from 'react-native';
+import { Home, Discover, Inbox, User } from '../screens';
+import { Image, StyleSheet } from 'react-native';
+import BottomTabIcon from './BottomTabIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -10,11 +10,9 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: 'white',
-        style: {
-          position: 'absolute',
-          backgroundColor: 'rgba(0,0,0,0.2)',
-        }
+        activeTintColor: 'rgb(255,255,255)',
+        inactiveTintColor: 'rgb(255,255,255)',
+        style: styles.tabBar
       }}
     >
       <Tab.Screen
@@ -22,7 +20,10 @@ const BottomTabNavigator = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Image style={{ flex: 1, resizeMode: 'contain' }} source={require('../assets/home_light.png')} />
+            <BottomTabIcon
+              isFocus={focused}
+              image={require('../assets/home_light.png')}
+            />
           )
         }}
       />
@@ -31,7 +32,10 @@ const BottomTabNavigator = () => {
         component={Discover}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Image style={{ flex: 1, resizeMode: 'contain' }} source={require('../assets/search_light.png')} />
+            <BottomTabIcon
+              isFocus={focused}
+              image={require('../assets/search_light.png')}
+            />
           )
         }}
       />
@@ -41,7 +45,11 @@ const BottomTabNavigator = () => {
         options={{
           tabBarLabel: () => null,
           tabBarIcon: ({ focused }) => (
-            <Image source={require('../assets/home_dark.png')} />
+            <BottomTabIcon
+              isFocus={focused}
+              isNonLabel={true}
+              image={require('../assets/add_light.png')}
+            />
           )
         }}
       />
@@ -50,7 +58,10 @@ const BottomTabNavigator = () => {
         component={Inbox}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Image source={require('../assets/home_dark.png')} />
+            <BottomTabIcon
+              isFocus={focused}
+              image={require('../assets/inbox_light.png')}
+            />
           )
         }}
       />
@@ -59,7 +70,10 @@ const BottomTabNavigator = () => {
         component={User}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Image source={require('../assets/home_dark.png')} />
+            <BottomTabIcon
+              isFocus={focused}
+              image={require('../assets/user_light.png')}
+            />
           )
         }}
       />
@@ -67,5 +81,12 @@ const BottomTabNavigator = () => {
   );
 };
 
-export default BottomTabNavigator;
+const styles = StyleSheet.create({
+  tabBar: {
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    borderTopWidth:0
+  }
+});
 
+export default BottomTabNavigator;

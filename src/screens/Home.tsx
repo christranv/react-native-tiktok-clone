@@ -1,13 +1,25 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, View, Image, StyleSheet, StatusBar } from 'react-native';
+import { StatusBarHeight } from '../utils/StatusBarHeight';
 
 const Home: React.SFC = () => {
+  console.log(StatusBarHeight);
+
   return (
-    <View style={{flex:1, backgroundColor:'blue'}}>
-      <Image source={require('../assets/sample_potrait_bg.png')}/>
+    <View>
+      <Image
+        style={styles.backgroundVideo}
+        source={require('../assets/sample_potrait_bg.png')}
+      />
+      <Text style={{ top: StatusBarHeight }}>aaa</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  backgroundVideo: {
+    position: 'absolute'
+  }
+});
 
 export default Home;
