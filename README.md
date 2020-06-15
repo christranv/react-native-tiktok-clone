@@ -1,5 +1,5 @@
 # react-native-tiktok-clone
-TikTok mobile app clone using React Native & TypeScript & Redux
+TikTok mobile app clone using React Native & Redux & TypeScript
 
 ## How to use
 - Clone
