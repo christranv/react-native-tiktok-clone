@@ -6,12 +6,14 @@ import TextTicker from 'react-native-text-ticker';
 const Home: React.SFC = () => {
   let spinValue = new Animated.Value(0);
 
-  Animated.timing(spinValue, {
-    toValue: 1,
-    duration: 3000,
-    easing: Easing.linear,
-    useNativeDriver: true
-  }).start();
+  Animated.loop(
+    Animated.timing(spinValue, {
+      toValue: 1,
+      duration: 10000,
+      easing: Easing.linear,
+      useNativeDriver: true
+    })
+  ).start();
 
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
@@ -19,7 +21,7 @@ const Home: React.SFC = () => {
   });
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.main}>
       <Image
         style={styles.backgroundVideo}
         source={require('../assets/sample_potrait_bg.png')}
@@ -45,8 +47,8 @@ const Home: React.SFC = () => {
         />
         <Text style={styles.sideText}>2976</Text>
         <Animated.Image
-          source={require('../assets/share_light.png')}
-          style={{ transform: [{ rotate: spin }] }}
+          source={require('../assets/song_cover.png')}
+          style={[styles.sideSongCover, { transform: [{ rotate: spin }] }]}
         />
       </View>
       <View style={styles.vidInfo}>
@@ -73,21 +75,25 @@ const Home: React.SFC = () => {
 };
 
 const styles = StyleSheet.create({
+  main:{
+    flex: 1
+  },
   backgroundVideo: {
-    position: 'absolute'
+    position: 'absolute',
   },
   sideBar: {
     position: 'absolute',
-    alignItems: 'center',
+    flexDirection:'column',
+    alignItems:'center',
     width: '14%',
-    height: '40%',
+    height: '53%',
     right: '2%',
-    bottom: '20%'
+    bottom:110,
   },
   sideProfImage: {
     width: '100%',
     height: '20%',
-    marginBottom: 5,
+    marginBottom: 3,
     resizeMode: 'contain'
   },
   sideIcon: {
@@ -102,12 +108,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white'
   },
+  sideSongCover: {
+    width: '88%',
+    height: '10%',
+    borderRadius: 30,
+    marginTop: 33
+  },
   vidInfo: {
     position: 'absolute',
     width: '60%',
-    height: '20%',
+    height: '11%',
     left: '3%',
-    bottom: 20
+    bottom: 110
   },
   vidInfoText: {
     fontSize: 16,
