@@ -23,8 +23,9 @@ export type RootState = ReturnType<typeof rootReducer>;
 // typed useSelector avoid redeclare state type
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(persistedReducer, compose(...enhancers));
-export const persistor = persistStore(store);
+// export const store = createStore(persistedReducer, compose(...enhancers));
+export const store = createStore(rootReducer, compose(...enhancers));
+// export const persistor = persistStore(store);
 

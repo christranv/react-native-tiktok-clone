@@ -3,9 +3,10 @@ export interface FeedState {
 }
 
 export interface Feed {
+    id: number,
     accountName: String,
     caption: String,
-    song: String, 
+    song: String,
     like: String,
     comment: number,
     share: number

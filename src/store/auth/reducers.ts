@@ -1,7 +1,7 @@
 import { UPDATE_AUTHEN, REMOVE_AUTHEN, AuthState, AuthActionTypes } from "./types";
 
 const initialState: AuthState = {
-    loggedIn: true,
+    loggedIn: false,
     token: "",
 };
 

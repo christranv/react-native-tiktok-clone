@@ -3,6 +3,7 @@ import { ADD_FEED, REMOVE_FEED, FeedState, FeedActionTypes } from "./types";
 const initialState: FeedState = {
     feeds: new Array(
         {
+            id: 1,
             accountName: "msquynhthie",
             caption: "This this caption this this caption this this caption",
             song: "Play Date - Melanie Martine",
@@ -11,9 +12,10 @@ const initialState: FeedState = {
             share: 2976
         },
         {
+            id: 2,
             accountName: "kingbach",
             caption: "Nigga whatcha!!!!!!!",
-            song: "JAMMU - KSHMR",
+            song: "Banana - Conkarah (feat. Shaggy)",
             like: "500.4",
             comment: 5665,
             share: 3211
@@ -39,6 +41,7 @@ export function feedReducer(
             };
         }
         default:
+            console.log("OKkkkkk");
             return state;
     }
 }
