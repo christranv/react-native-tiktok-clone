@@ -1,7 +1,7 @@
 import { UPDATE_AUTHEN, REMOVE_AUTHEN, AuthState, AuthActionTypes } from "./types";
 
 const initialState: AuthState = {
-    loggedIn: false,
+    loggedIn: true,
     token: "",
 };
 
@@ -15,6 +15,12 @@ export function authReducer(
                 ...state,
                 ...action.payload
             };
+        }
+        case REMOVE_AUTHEN: {
+            return {
+                loggedIn: false,
+                token: ""
+            }
         }
         default:
             return state;

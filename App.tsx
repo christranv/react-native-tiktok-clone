@@ -9,12 +9,6 @@ import { StyleSheet} from 'react-native';
 
 const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-    },
-});
-
 const App = () => {
   return (
     <Provider store={store}>
@@ -34,5 +28,10 @@ const App = () => {
   );
 };
 
-export default App;
+const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+    },
+});
 
+export default App;

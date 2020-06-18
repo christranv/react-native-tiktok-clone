@@ -1,9 +1,26 @@
-import React from 'react';
-import { Text, View, Image, StyleSheet, Animated, Easing } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Animated,
+  Easing,
+  useWindowDimensions,
+  Dimensions
+} from 'react-native';
+import { useTypedSelector, RootState } from '../store';
+import { Feed } from 'src/store/feed/types';
+import VerticalViewPager from 'react-native-vertical-view-pager';
 import { StatusBarHeight } from '../utils/StatusBarHeight';
 import TextTicker from 'react-native-text-ticker';
+import Video from 'react-native-video';
+
+const { width, height } = Dimensions.get('window');
 
 const Home: React.SFC = () => {
+  const feeds = useTypedSelector((state) => state.feed.feeds);
+
   let spinValue = new Animated.Value(0);
 
   Animated.loop(
@@ -22,73 +39,102 @@ const Home: React.SFC = () => {
 
   return (
     <View style={styles.main}>
-      <Image
+      {/* <Image
         style={styles.backgroundVideo}
         source={require('../assets/sample_potrait_bg.png')}
-      />
-      <View style={styles.sideBar}>
-        <Image
-          source={require('../assets/profile_image.png')}
-          style={styles.sideProfImage}
-        />
-        <Image
-          source={require('../assets/heart_light.png')}
-          style={styles.sideIcon}
-        />
-        <Text style={styles.sideText}>250.4K</Text>
-        <Image
-          source={require('../assets/comment_light.png')}
-          style={styles.sideIcon}
-        />
-        <Text style={styles.sideText}>1191</Text>
-        <Image
-          source={require('../assets/share_light.png')}
-          style={styles.sideIcon}
-        />
-        <Text style={styles.sideText}>2976</Text>
-        <Animated.Image
-          source={require('../assets/song_cover.png')}
-          style={[styles.sideSongCover, { transform: [{ rotate: spin }] }]}
-        />
-      </View>
-      <View style={styles.vidInfo}>
-        <Text style={[styles.vidInfoText, styles.vidInfoUsername]}>
-          @msquynhthie
-        </Text>
-        <Text style={[styles.vidInfoText, styles.vidInfoCaption]}>
-          This this caption this this caption this this caption
-        </Text>
-        <View style={styles.vidInfoSliderCpn}>
-          <TextTicker
-            style={styles.vidInfoSlider}
-            duration={4000}
-            marqueeDelay={1000}
-            repeatSpacer={70}
-            isRTL={false}
-          >
-            Play Date - Melanie Martine
-          </TextTicker>
-        </View>
-      </View>
+      /> */}
+      <VerticalViewPager showsVerticalScrollIndicator={false}>
+        {feeds.map((feed: Feed) => (
+          <View key={feed.id} style={styles.page_container}>
+            <Video
+              source={require('../assets/video2.mp4')}
+              style={styles.backgroundVideo}
+              resizeMode={'contain'}
+              ignoreSilentSwitch={'obey'}
+              muted={true}
+              paused={true}
+            />
+            <View style={styles.sideBar}>
+              <Image
+                source={require('../assets/profile_image.png')}
+                style={styles.sideProfImage}
+              />
+              <Image
+                source={require('../assets/heart_light.png')}
+                style={styles.sideIcon}
+              />
+              <Text style={styles.sideText}>{feed.like}K</Text>
+              <Image
+                source={require('../assets/comment_light.png')}
+                style={styles.sideIcon}
+              />
+              <Text style={styles.sideText}>{feed.comment}</Text>
+              <Image
+                source={require('../assets/share_light.png')}
+                style={styles.sideIcon}
+              />
+              <Text style={styles.sideText}>{feed.share}</Text>
+              <Animated.Image
+                source={require('../assets/song_cover.png')}
+                style={[
+                  styles.sideSongCover,
+                  { transform: [{ rotate: spin }] }
+                ]}
+              />
+            </View>
+            <View style={styles.vidInfo}>
+              <Text style={[styles.vidInfoText, styles.vidInfoUsername]}>
+                @{feed.accountName}
+              </Text>
+              <Text style={[styles.vidInfoText, styles.vidInfoCaption]}>
+                {feed.caption}
+              </Text>
+              <View style={styles.vidInfoSliderCpn}>
+                <TextTicker
+                  style={styles.vidInfoSlider}
+                  duration={4000}
+                  marqueeDelay={1000}
+                  repeatSpacer={70}
+                  isRTL={false}
+                >
+                  {feed.song}
+                </TextTicker>
+              </View>
+            </View>
+          </View>
+        ))}
+      </VerticalViewPager>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  main:{
-    flex: 1
+  main: {
+    flex: 1,
+    backgroundColor: 'black'
   },
   backgroundVideo: {
     position: 'absolute',
+    height: height,
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  },
+  page_container: {
+    flex: 1,
+    width: width,
+    height: height,
+    top: 0
   },
   sideBar: {
     position: 'absolute',
-    flexDirection:'column',
-    alignItems:'center',
+    flexDirection: 'column',
+    alignItems: 'center',
     width: '14%',
     height: '53%',
     right: '2%',
-    bottom:110,
+    bottom: 110
   },
   sideProfImage: {
     width: '100%',
@@ -129,6 +175,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   vidInfoCaption: {
+    height: '39%',
     marginTop: 10
   },
   vidInfoSliderCpn: {
