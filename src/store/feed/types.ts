@@ -10,6 +10,7 @@ export interface Feed {
     like: String,
     comment: number,
     share: number
+    videoSource: any
 }
 
 export const ADD_FEED = "ADD_FEED";
