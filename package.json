@@ -7,8 +7,8 @@
     "ios": "react-native run-ios",
     "android": "cd android && ./gradlew clean && cd .. && react-native run-android",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint-and-fix": "eslint . --ext .ts --fix"
+    "tslint": "tslint src/**/*.ts src/**/*.tsx",
+    "lint": "yarn tslint"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
@@ -24,6 +24,7 @@
     "react-native-gesture-handler": "^1.6.1",
     "react-native-safe-area-context": "^3.0.3",
     "react-native-screens": "^2.8.0",
+    "react-native-status-bar-height": "^2.5.0",
     "react-native-text-ticker": "^1.5.0",
     "react-native-vertical-view-pager": "^0.1.1",
     "react-native-video": "^4.4.5",
@@ -35,29 +36,36 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
-    "@react-native-community/eslint-config": "^1.0.0",
-    "@types/jest": "^24.0.24",
-    "@types/react-native": "^0.62.0",
-    "@types/react-test-renderer": "16.9.2",
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0",
+    "@types/jest": "^26.0.0",
+    "@types/react": "^16.9.38",
+    "@types/react-native": "^0.62.13",
+    "@types/react-test-renderer": "^16.9.2",
+    "add": "^2.0.6",
     "babel-jest": "^24.9.0",
-    "eslint": "^6.5.1",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^2.0.4",
+    "react-native-typescript-transformer": "^1.2.13",
     "react-test-renderer": "16.11.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5",
+    "yarn": "^1.22.4"
   },
   "jest": {
     "preset": "react-native",
     "moduleFileExtensions": [
       "ts",
       "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "\\.snap$",
+      "<rootDir>/node_modules/"
+    ],
+    "cacheDirectory": ".jest/cache"
   }
 }
