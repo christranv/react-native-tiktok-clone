@@ -4,7 +4,7 @@ import { store, persistor } from './src/store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PersistGate } from 'redux-persist/integration/react';
-import BottomTabNavigator from './src/components/BottomTabNavigator';
+import Navigator from './src/components/navigator';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +19,7 @@ const App = () => {
               headerShown: false
             }}
           >
-            <Stack.Screen component={BottomTabNavigator} name="Root" />
+            <Stack.Screen component={Navigator} name="Root" />
           </Stack.Navigator>
         </NavigationContainer>
       {/* </PersistGate> */}

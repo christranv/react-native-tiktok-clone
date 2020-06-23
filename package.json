@@ -26,6 +26,7 @@
     "react-native-screens": "^2.8.0",
     "react-native-status-bar-height": "^2.5.0",
     "react-native-text-ticker": "^1.5.0",
+    "react-native-touchable-swipe": "^1.0.0",
     "react-native-vertical-view-pager": "^0.1.1",
     "react-native-video": "^4.4.5",
     "react-redux": "^7.2.0",

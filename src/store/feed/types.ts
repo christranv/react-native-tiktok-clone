@@ -1,13 +1,13 @@
 export interface FeedState {
-    feeds: Array<Feed>;
+    feeds: Feed[];
 }
 
 export interface Feed {
     id: number,
-    accountName: String,
-    caption: String,
-    song: String,
-    like: String,
+    accountName: string,
+    caption: string,
+    song: string,
+    like: number,
     comment: number,
     share: number
     videoSource: any
