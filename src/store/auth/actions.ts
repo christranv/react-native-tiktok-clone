@@ -10,5 +10,5 @@ export function updateAuthen(newAuthen: AuthState) {
 export function removeAuthen() {
   return {
     type: REMOVE_AUTHEN,
-  };
+  }
 }

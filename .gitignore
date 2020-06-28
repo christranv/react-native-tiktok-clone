@@ -68,3 +68,6 @@ yarn.lock
 # Jest
 #
 .jest/
+
+# Firebase config file
+src/firebase/index.ts

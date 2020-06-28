@@ -2,11 +2,10 @@ import { Dimensions, Platform, PixelRatio } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+export const STATUS_BAR_HEIGHT = getStatusBarHeight();
 
 // based on iPhone 11
 const scale = SCREEN_WIDTH / 414;
-
-export const STATUS_BAR_HEIGHT = getStatusBarHeight();
 
 export function gw(scale: number) {
   return Math.round(scale * SCREEN_WIDTH / 100);

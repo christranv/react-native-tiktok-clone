@@ -1,4 +1,5 @@
 export interface FeedState {
+    isFetching: boolean;
     feeds: Feed[];
 }
 
@@ -10,19 +11,19 @@ export interface Feed {
     like: number,
     comment: number,
     share: number
-    videoSource: any
+    videoUrl: string
 }
 
-export const ADD_FEED = "ADD_FEED";
-export const REMOVE_FEED = "REMOVE_FEED";
+export const REQUEST_FEEDS = "REQUEST_FEEDS";
+export const RECEIVE_FEEDS = "RECEIVE_FEEDS";
 
-interface AddFeedAction {
-    type: typeof ADD_FEED;
-    payload: Feed;
+interface RequestFeedsAction {
+    type: typeof REQUEST_FEEDS;
 }
 
-interface RemoveFeedAction {
-    type: typeof REMOVE_FEED;
+interface ReceiveFeedsAction {
+    type: typeof RECEIVE_FEEDS;
+    data: Feed[]
 }
 
-export type FeedActionTypes = AddFeedAction | RemoveFeedAction; 
+export type FeedActionTypes = RequestFeedsAction | ReceiveFeedsAction; 

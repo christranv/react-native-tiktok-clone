@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { View, Image, Text, Animated, StyleSheet, Easing, StyleProp, ViewStyle, ShadowPropTypesIOS } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, Image, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 interface Props {
   style: StyleProp<ViewStyle>;

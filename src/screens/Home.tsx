@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import ViewPager from '@react-native-community/viewpager';
@@ -14,8 +14,11 @@ import {
   SCREEN_WIDTH,
   STATUS_BAR_HEIGHT,
 } from '../utils/responsive';
+import { useDispatch } from 'react-redux';
+import { fetchFeeds } from '../store/feed/actions';
 
 const Home: React.SFC = () => {
+  const isFetching: boolean = useTypedSelector((state) => state.feed.isFetching);
   const feeds: Feed[] = useTypedSelector((state) => state.feed.feeds);
 
   // feed types
@@ -30,7 +33,12 @@ const Home: React.SFC = () => {
   const onPageSelected = useCallback((e) => {
     setActivePage(e.nativeEvent.position);
     // test (default false)
-    setIsPaused(true);
+    setIsPaused(false);
+  }, []);
+
+  let dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchFeeds());
   }, []);
 
   return (
@@ -39,41 +47,42 @@ const Home: React.SFC = () => {
         style={styles.main}
         orientation="vertical"
         onPageSelected={onPageSelected}>
-        {feeds.map((feed, index) => (
-          <View key={feed.id} style={styles.pageContainer}>
-            <TouchableSwipe onPress={() => setIsPaused(!isPaused)}>
-              <Video
-                source={feed.videoSource}
-                resizeMode={'contain'}
-                ignoreSilentSwitch={'obey'}
-                style={styles.video}
-                muted={true}
-                paused={activePage != index || isPaused}
-              />
-              {isPaused && (
-                <Animated.Image
-                  style={[
-                    styles.playBtn,
-                    // { transform: [{ scale: zoomValue }] },
-                  ]}
-                  source={require('../assets/icons/play.png')}
+        {isFetching == false &&
+          feeds.map((feed, index) => (
+            <View key={feed.id} style={styles.pageContainer}>
+              <TouchableSwipe onPress={() => setIsPaused(!isPaused)}>
+                <Video
+                  source={{uri:feed.videoUrl}}
+                  resizeMode={'contain'}
+                  ignoreSilentSwitch={'obey'}
+                  style={styles.video}
+                  // muted={true}
+                  paused={activePage != index || isPaused}
                 />
-              )}
-            </TouchableSwipe>
-            <FeedSideBar
-              style={styles.sideBar}
-              like={feed.like}
-              comment={feed.comment}
-              share={feed.share}
-            />
-            <FeedContent
-              style={styles.feedContent}
-              accountName={feed.accountName}
-              caption={feed.caption}
-              song={feed.song}
-            />
-          </View>
-        ))}
+                {isPaused && (
+                  <Animated.Image
+                    style={[
+                      styles.playBtn,
+                      // { transform: [{ scale: zoomValue }] },
+                    ]}
+                    source={require('../assets/icons/play.png')}
+                  />
+                )}
+              </TouchableSwipe>
+              <FeedSideBar
+                style={styles.sideBar}
+                like={feed.like}
+                comment={feed.comment}
+                share={feed.share}
+              />
+              <FeedContent
+                style={styles.feedContent}
+                accountName={feed.accountName}
+                caption={feed.caption}
+                song={feed.song}
+              />
+            </View>
+          ))}
       </ViewPager>
       <View style={styles.feedType}>
         <TouchableWithoutFeedback>

@@ -6,8 +6,8 @@ import { authReducer } from './auth/reducers';
 import { feedReducer } from './feed/reducers';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
-const middlewares = [thunk];
-const enhancers = [applyMiddleware(...middlewares)];
+// const middlewares = [thunk];
+// const enhancers = [applyMiddleware(...middlewares)];
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
@@ -26,6 +26,6 @@ export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // export const store = createStore(persistedReducer, compose(...enhancers));
-export const store = createStore(rootReducer, compose(...enhancers));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 // export const persistor = persistStore(store);
 
