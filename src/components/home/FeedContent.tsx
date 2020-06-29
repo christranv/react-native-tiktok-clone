@@ -10,6 +10,8 @@ interface Props {
 }
 
 const FeedContent: React.SFC<Props> = (props) => {
+  // highlight hashtag 
+  let formatted = props.caption.split(' ').map((caption, index) => caption.charAt(0)=='#' ? <Text key={index} style={styles.bold}>{caption+' '}</Text>:caption+' ')
   return (
     <View style={props.style}>
       <Text style={[styles.text, styles.username]}>
@@ -17,7 +19,7 @@ const FeedContent: React.SFC<Props> = (props) => {
       </Text>
       {props.caption != '' && (
         <Text style={[styles.text, styles.caption]}>
-          {props.caption}
+          {formatted}
         </Text>
       )}
       <View style={styles.sliderWrapper}>
@@ -38,6 +40,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     color: 'white',
+  },
+  bold: {
+    fontWeight: 'bold',
   },
   username: {
     fontWeight: 'bold',
