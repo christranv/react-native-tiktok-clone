@@ -4,12 +4,11 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import ViewPager from '@react-native-community/viewpager';
 import TouchableSwipe from 'react-native-touchable-swipe';
 import Video from 'react-native-video';
-import { FeedContent, FeedSideBar } from '../components/home';
+import { FeedContent, FeedSideBar, FeedTypeChooser } from '../components/home';
 import { useTypedSelector } from '../store';
-import { Feed } from '../store/feed/types';
+import { Feed, FOLLOWING_FEEDS, feedTypes } from '../store/feed/types';
 import {
   gh,
-  normalize,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
   STATUS_BAR_HEIGHT,
@@ -18,27 +17,34 @@ import { useDispatch } from 'react-redux';
 import { fetchFeeds } from '../store/feed/actions';
 
 const Home: React.SFC = () => {
-  const isFetching: boolean = useTypedSelector((state) => state.feed.isFetching);
+  let dispatch = useDispatch();
+  const isFetching: boolean = useTypedSelector(
+    (state) => state.feed.isFetching,
+  );
   const feeds: Feed[] = useTypedSelector((state) => state.feed.feeds);
-
-  // feed types
-  const [feedType, setFeedType] = useState('For You');
 
   // animate play button
   // let zoomValue = new Animated.Value(0.0);
   // Animated.spring(zoomValue, { toValue: 1, friction: 0.1, delay: 1000, useNativeDriver:true });
 
+  // control video on feed
   const [isPaused, setIsPaused] = useState(true);
   const [activePage, setActivePage] = useState(0);
   const onPageSelected = useCallback((e) => {
     setActivePage(e.nativeEvent.position);
     // test (default false)
-    setIsPaused(false);
+    setIsPaused(true);
   }, []);
 
-  let dispatch = useDispatch();
+  // load default data
   useEffect(() => {
-    dispatch(fetchFeeds());
+    dispatch(fetchFeeds(FOLLOWING_FEEDS));
+  }, []);
+
+  // on feedTypes change
+  const [feedType, setFeedType] = useState<feedTypes>(FOLLOWING_FEEDS);
+  const loadFeeds = useCallback((type: feedTypes) => {
+    dispatch(fetchFeeds(type));
   }, []);
 
   return (
@@ -52,11 +58,11 @@ const Home: React.SFC = () => {
             <View key={feed.id} style={styles.pageContainer}>
               <TouchableSwipe onPress={() => setIsPaused(!isPaused)}>
                 <Video
-                  source={{uri:feed.videoUrl}}
+                  source={{ uri: feed.videoUrl }}
                   resizeMode={'contain'}
                   ignoreSilentSwitch={'obey'}
                   style={styles.video}
-                  // muted={true}
+                  muted={true}
                   paused={activePage != index || isPaused}
                 />
                 {isPaused && (
@@ -71,6 +77,7 @@ const Home: React.SFC = () => {
               </TouchableSwipe>
               <FeedSideBar
                 style={styles.sideBar}
+                accountAvatar={feed.accountAvatar}
                 like={feed.like}
                 comment={feed.comment}
                 share={feed.share}
@@ -84,15 +91,11 @@ const Home: React.SFC = () => {
             </View>
           ))}
       </ViewPager>
-      <View style={styles.feedType}>
-        <TouchableWithoutFeedback>
-          <Text style={styles.feedTypeText}>Following</Text>
-        </TouchableWithoutFeedback>
-        <Text style={styles.feedTypeText}>︲</Text>
-        <TouchableWithoutFeedback>
-          <Text style={styles.feedTypeText}>For You</Text>
-        </TouchableWithoutFeedback>
-      </View>
+      <FeedTypeChooser
+        style={styles.feedType}
+        type={feedType}
+        loadFeeds={loadFeeds}
+      />
     </View>
   );
 };
@@ -109,19 +112,13 @@ const styles = StyleSheet.create({
     width: '14%',
     height: '53%',
     right: '2%',
-    bottom: 95,
+    bottom: 97,
   },
   feedType: {
     position: 'absolute',
     alignSelf: 'center',
     top: STATUS_BAR_HEIGHT,
     flexDirection: 'row',
-  },
-  feedTypeText: {
-    fontSize: normalize(20),
-    color: 'white',
-    textAlignVertical: 'bottom',
-    fontWeight: 'bold',
   },
   video: {
     height: SCREEN_HEIGHT,

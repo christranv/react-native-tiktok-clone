@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
-import TextTicker from "react-native-text-ticker";
+import React from 'react';
+import { View, Text, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import TextTicker from 'react-native-text-ticker';
 
 interface Props {
   style: StyleProp<ViewStyle>;
@@ -10,17 +10,21 @@ interface Props {
 }
 
 const FeedContent: React.SFC<Props> = (props) => {
-  // highlight hashtag 
-  let formatted = props.caption.split(' ').map((caption, index) => caption.charAt(0)=='#' ? <Text key={index} style={styles.bold}>{caption+' '}</Text>:caption+' ')
+  // highlight hashtag
+  let highlighted = props.caption.split(' ').map((caption, index) =>
+    caption.charAt(0) == '#' ? (
+      <Text key={index} style={styles.bold}>
+        {caption + ' '}
+      </Text>
+    ) : (
+      caption + ' '
+    ),
+  );
   return (
     <View style={props.style}>
-      <Text style={[styles.text, styles.username]}>
-        @{props.accountName}
-      </Text>
+      <Text style={[styles.text, styles.username]}>@{props.accountName}</Text>
       {props.caption != '' && (
-        <Text style={[styles.text, styles.caption]}>
-          {formatted}
-        </Text>
+        <Text style={[styles.text, styles.caption]}>{highlighted}</Text>
       )}
       <View style={styles.sliderWrapper}>
         <TextTicker
@@ -38,7 +42,7 @@ const FeedContent: React.SFC<Props> = (props) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 16,
+    fontSize: 18,
     color: 'white',
   },
   bold: {
@@ -58,6 +62,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'white',
   },
-})
+});
 
 export default React.memo(FeedContent);

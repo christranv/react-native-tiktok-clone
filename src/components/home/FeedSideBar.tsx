@@ -3,6 +3,7 @@ import { Animated, Easing, Image, StyleProp, StyleSheet, Text, View, ViewStyle }
 
 interface Props {
   style: StyleProp<ViewStyle>;
+  accountAvatar: string;
   like: number;
   comment: number;
   share: number;
@@ -25,56 +26,69 @@ const FeedSideBar: React.SFC<Props> = (props) => {
       }),
     ).start();
   }, []);
-
+  
+  console.log(props.accountAvatar);
+  
   return (
     <View style={props.style}>
       <Image
-        source={require('../../assets/icons/profile_image.png')}
-        style={styles.sideProfImage}
+        source={require('../../assets/icons/profile_image_frame.png')}
+        style={styles.profImageFrame}
+      />
+      <Image
+        source={{uri:props.accountAvatar}}
+        style={styles.profImage}
       />
       <Image
         source={require('../../assets/icons/heart_light.png')}
-        style={styles.sideIcon}
+        style={styles.icon}
       />
-      <Text style={styles.sideText}>{props.like}K</Text>
+      <Text style={styles.text}>{props.like}K</Text>
       <Image
         source={require('../../assets/icons/comment.png')}
-        style={styles.sideIcon}
+        style={styles.icon}
       />
-      <Text style={styles.sideText}>{props.comment}</Text>
+      <Text style={styles.text}>{props.comment}</Text>
       <Image
         source={require('../../assets/icons/share.png')}
-        style={styles.sideIcon}
+        style={styles.icon}
       />
-      <Text style={styles.sideText}>{props.share}</Text>
+      <Text style={styles.text}>{props.share}</Text>
       <Animated.Image
         source={require('../../assets/icons/song_cover.png')}
-        style={[styles.sideSongCover, { transform: [{ rotate: spin }] }]}
+        style={[styles.songCover, { transform: [{ rotate: spin }] }]}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  sideProfImage: {
+  profImageFrame: {
     width: '100%',
     height: '20%',
     marginBottom: 3,
     resizeMode: 'contain',
+    zIndex:1
   },
-  sideIcon: {
+  profImage: {
+    position: 'absolute',
+    width: '94%',
+    height: '10%',
+    marginTop: 19,
+    borderRadius: 30,
+  },
+  icon: {
     width: '65%',
     height: '10%',
     resizeMode: 'contain',
     marginTop: 30,
     marginBottom: 5,
   },
-  sideText: {
-    fontSize: 12,
-    fontWeight: 'bold',
+  text: {
+    fontSize: 13,
     color: 'white',
   },
-  sideSongCover: {
+  songCover: {
     width: '88%',
     height: '10%',
     borderRadius: 30,

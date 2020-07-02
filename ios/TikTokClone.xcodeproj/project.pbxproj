@@ -17,9 +17,11 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* TikTokCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TikTokCloneTests.m */; };
+		3D3FFF8D8566446BADAA65A3 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F91732319684399939BF1C5 /* ProximaNova-Regular.otf */; };
 		4B7EEE86DDA97A0678F37101 /* libPods-TikTokClone-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAAD4E251243120AEF5A48F1 /* libPods-TikTokClone-tvOS.a */; };
 		8B0F4638117D0446DB695DE6 /* libPods-TikTokClone-TikTokCloneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE69A2BE97BFC57C51C4C4F5 /* libPods-TikTokClone-TikTokCloneTests.a */; };
 		9A4161D9375791E4F6581B85 /* libPods-TikTokClone-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6945B23ABEF6D5ADD70D40 /* libPods-TikTokClone-tvOSTests.a */; };
+		82BBE49F4F1F4EC289067ED3 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4614C5B9832E4855BC60E355 /* ProximaNova-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TikTokClone/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* TikTokClone-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TikTokClone-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* TikTokClone-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TikTokClone-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F91732319684399939BF1C5 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Regular.otf"; path = "../src/assets/fonts/ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		34E513029606E2FBB551A6AB /* libPods-TikTokClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TikTokClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B35D15125F8D20CA0E7486 /* Pods-TikTokClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikTokClone.debug.xcconfig"; path = "Target Support Files/Pods-TikTokClone/Pods-TikTokClone.debug.xcconfig"; sourceTree = "<group>"; };
 		3B596FB7FE9E58B8C011E11D /* Pods-TikTokClone-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikTokClone-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-TikTokClone-tvOSTests/Pods-TikTokClone-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		CF557BC38B09C0A1476F682D /* Pods-TikTokClone-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TikTokClone-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-TikTokClone-tvOSTests/Pods-TikTokClone-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		4614C5B9832E4855BC60E355 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; name = "ProximaNova-Bold.otf"; path = "../src/assets/fonts/ProximaNova-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				FCB5EE40B10372C5C095AD12 /* Pods */,
+				D1BEF21BF1314E478A06C145 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -182,6 +187,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D1BEF21BF1314E478A06C145 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F91732319684399939BF1C5 /* ProximaNova-Regular.otf */,
+				4614C5B9832E4855BC60E355 /* ProximaNova-Bold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FCB5EE40B10372C5C095AD12 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +208,6 @@
 				CF557BC38B09C0A1476F682D /* Pods-TikTokClone-tvOSTests.debug.xcconfig */,
 				3B596FB7FE9E58B8C011E11D /* Pods-TikTokClone-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -340,6 +353,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				3D3FFF8D8566446BADAA65A3 /* ProximaNova-Regular.otf in Resources */,
+				82BBE49F4F1F4EC289067ED3 /* ProximaNova-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

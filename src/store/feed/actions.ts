@@ -1,11 +1,13 @@
 import { Dispatch } from "react";
 import firebase from "../../firebase";
 import 'firebase/firestore';
-import { Feed, REQUEST_FEEDS, RECEIVE_FEEDS, FeedActionTypes } from "./types";
+import { Feed, REQUEST_FEEDS, RECEIVE_FEEDS, FeedActionTypes, feedTypes } from "./types";
+import { store } from "..";
 
-function requestFeeds(): FeedActionTypes {
+function requestFeeds(feedType: feedTypes): FeedActionTypes {
   return {
     type: REQUEST_FEEDS,
+    feedType: feedType
   };
 }
 
@@ -16,10 +18,11 @@ function receiveFeeds(feeds: Feed[]): FeedActionTypes {
   };
 }
 
-export function fetchFeeds() {
+export function fetchFeeds(feedType:feedTypes) {
   return (dispatch: Dispatch<FeedActionTypes>) => {
-    dispatch(requestFeeds());
-    firebase.firestore().collection('following_feeds').get().then((doc: any) => {
+    if(store.getState().feed.activeFeedType==feedType) return;
+    dispatch(requestFeeds(feedType));
+    firebase.firestore().collection(feedType).get().then((doc: any) => {
       let feeds: Feed[] = [];
       doc.forEach((doc: any) => {
         let feed: Feed = <Feed>doc.data();

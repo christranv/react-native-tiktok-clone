@@ -1,7 +1,8 @@
-import { FeedActionTypes, FeedState, RECEIVE_FEEDS, REQUEST_FEEDS, Feed } from "./types";
+import { FeedActionTypes, FeedState, RECEIVE_FEEDS, REQUEST_FEEDS } from "./types";
 
 const initialState: FeedState = {
     isFetching: false,
+    activeFeedType: undefined,
     feeds: []
 };
 
@@ -13,7 +14,8 @@ export function feedReducer(
         case REQUEST_FEEDS: {
             return {
                 ...state,
-                isFetching: true
+                isFetching: true,
+                activeFeedType: action.feedType
             };
         }
         case RECEIVE_FEEDS: {
