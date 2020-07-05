@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Inbox: React.SFC = () => {
+const Inbox: React.FC = () => {
   return (
     <>
     </>

@@ -1,14 +1,14 @@
-import { AuthState, UPDATE_AUTHEN, REMOVE_AUTHEN } from "./types";
+import { AuthState, UPDATE_AUTH, REMOVE_AUTH } from "./types";
 
-export function updateAuthen(newAuthen: AuthState) {
+export const updateAuth = (newAuth: AuthState) => {
   return {
-    type: UPDATE_AUTHEN,
-    payload: newAuthen
+    type: UPDATE_AUTH,
+    payload: newAuth
   };
 }
 
-export function removeAuthen() {
+export const removeAuth = () => {
   return {
-    type: REMOVE_AUTHEN,
+    type: REMOVE_AUTH,
   }
 }

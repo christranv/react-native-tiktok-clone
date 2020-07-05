@@ -1,4 +1,4 @@
-import { FeedActionTypes, FeedState, RECEIVE_FEEDS, REQUEST_FEEDS } from "./types";
+import { FeedActionTypes, FeedState, LOVE_FEED, RECEIVE_FEEDS, REQUEST_FEEDS } from "./types";
 
 const initialState: FeedState = {
     isFetching: false,
@@ -6,10 +6,7 @@ const initialState: FeedState = {
     feeds: []
 };
 
-export function feedReducer(
-    state = initialState,
-    action: FeedActionTypes
-): FeedState {
+export const feedReducer = (state = initialState, action: FeedActionTypes): FeedState => {
     switch (action.type) {
         case REQUEST_FEEDS: {
             return {
@@ -19,11 +16,18 @@ export function feedReducer(
             };
         }
         case RECEIVE_FEEDS: {
+            console.log("LOL");
             return {
                 ...state,
                 isFetching: false,
                 feeds: action.data
             };
+        }
+        case LOVE_FEED: {
+            return {
+                ...state,
+                feeds: action.data
+            }
         }
         default:
             return state;

@@ -7,13 +7,12 @@ interface Props {
   image: any;
 }
 
-const TabIcon: React.SFC<Props> = (props) => {
+const TabIcon: React.FC<Props> = (props) => {
   return (
     <Image
       style={[
         styles.tabBarIcon,
-        // props.isFocus ? null : styles.nonFocus,
-        props.isNonLabel ? styles.midIconSize:styles.normIconSize
+        props.isNonLabel ? styles.midIconSize : styles.normIconSize
       ]}
       source={props.image}
     />

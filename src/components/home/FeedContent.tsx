@@ -9,16 +9,16 @@ interface Props {
   song: string;
 }
 
-const FeedContent: React.SFC<Props> = (props) => {
-  // highlight hashtag
+const FeedContent: React.FC<Props> = (props) => {
+  // Highlight hashtag
   let highlighted = props.caption.split(' ').map((caption, index) =>
     caption.charAt(0) == '#' ? (
       <Text key={index} style={styles.bold}>
         {caption + ' '}
       </Text>
     ) : (
-      caption + ' '
-    ),
+        caption + ' '
+      ),
   );
   return (
     <View style={props.style}>

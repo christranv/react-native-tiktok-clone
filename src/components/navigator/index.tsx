@@ -6,7 +6,7 @@ import TabIcon from './TabIcon';
 
 const Tab = createBottomTabNavigator();
 
-const Navigator = () => {
+const Navigator: React.FC = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{

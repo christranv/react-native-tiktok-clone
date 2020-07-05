@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Discover: React.SFC = () => {
+const Discover: React.FC = () => {
   return (
     <>
     </>

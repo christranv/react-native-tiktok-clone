@@ -3,16 +3,16 @@ export interface AuthState {
     token: string;
 }
 
-export const UPDATE_AUTHEN = "UPDATE_AUTHEN";
-export const REMOVE_AUTHEN = "REMOVE_AUTHEN";
+export const UPDATE_AUTH = "UPDATE_AUTH";
+export const REMOVE_AUTH = "REMOVE_AUTH";
 
-interface UpdateAuthenAction {
-    type: typeof UPDATE_AUTHEN;
+interface UpdateAuthAction {
+    type: typeof UPDATE_AUTH;
     payload: AuthState;
 }
 
-interface RemoveAuthenAction {
-    type: typeof REMOVE_AUTHEN;
+interface RemoveAuthAction {
+    type: typeof REMOVE_AUTH;
 }
 
-export type AuthActionTypes = UpdateAuthenAction | RemoveAuthenAction; 
+export type AuthActionTypes = UpdateAuthAction | RemoveAuthAction; 
