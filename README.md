@@ -9,6 +9,4 @@ TikTok mobile app clone using React Native & Redux & TypeScript
 ## Dependencies
 - react
 - react-native
-- react-navigation
 - react-redux
-- redux
