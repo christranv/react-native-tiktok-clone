@@ -2,6 +2,7 @@
 TikTok mobile app clone using React Native & Redux & TypeScript
 
 ## Preview
+![homescreen](/preview/Home.png)
 - video: https://www.youtube.com/embed/jBX_8pNVwLY
 
 ## How to use
