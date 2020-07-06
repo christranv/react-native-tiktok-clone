@@ -21,14 +21,13 @@ import {
   SCREEN_WIDTH,
   STATUS_BAR_HEIGHT
 } from '../utils/responsive';
+import Comment from '../components/comment';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const viewPagerRef: MutableRefObject<any> = useRef();
   const isFetching: boolean = useTypedSelector((state) => state.feed.isFetching);
-  // const feeds: Feed[] = useTypedSelector((state) => state.feed.feeds);
-
-  const feeds: Feed[] = useSelector((state:RootState) => state.feed.feeds);
+  const feeds: Feed[] = useTypedSelector((state) => state.feed.feeds);
 
   // Animate play button
   // let zoomValue = new Animated.Value(0.0);
@@ -45,7 +44,7 @@ const Home: React.FC = () => {
   const onPageSelected = useCallback((e) => {
     setActivePage(e.nativeEvent.position);
     // Test (default false)
-    setIsPaused(true);
+    setIsPaused(false);
   }, []);
 
   // FeedTypes change event
@@ -115,6 +114,7 @@ const Home: React.FC = () => {
         type={activeFeedType}
         onChange={onFeedTypeChange}
       />
+      {/* <Comment/> */}
     </View>
   );
 };

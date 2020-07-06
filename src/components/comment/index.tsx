@@ -1,20 +1,34 @@
-import { Modal, StyleSheet, View } from "react-native"
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Modal from 'react-native-modal';
+import { gh, SCREEN_WIDTH } from "../../utils/responsive";
 
-const Comment: React.FC = () => (
-    <Modal
-        animated
-        animationType="fade"
-        visible={false}
-        transparent
-        onRequestClose={() => console.log("X")}>
-    </Modal >
-);
+const Comment: React.FC = () => {
+    const [visible, setVisible] = useState(true);
+    return (
+        <Modal
+            isVisible={visible}
+            backdropOpacity={0.2}
+            style={styles.main}
+            onBackdropPress={() => setVisible(false)}>
+            <View style={styles.modalView}>
+                <Text>ssss</Text>
+            </View>
+        </Modal >
+    )
+};
 
 const styles = StyleSheet.create({
-    overlay: {
-        backgroundColor: 'rgba(0,0,0,0.2)',
+    main: {
         flex: 1,
+        margin: 0,
         justifyContent: 'flex-end',
+    },
+    modalView: {
+        height: gh(65),
+        backgroundColor: "white",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15
     },
 });
 

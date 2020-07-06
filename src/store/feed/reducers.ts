@@ -16,7 +16,6 @@ export const feedReducer = (state = initialState, action: FeedActionTypes): Feed
             };
         }
         case RECEIVE_FEEDS: {
-            console.log("LOL");
             return {
                 ...state,
                 isFetching: false,

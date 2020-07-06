@@ -33,6 +33,7 @@ export const loveFeed = (feedId: string): FeedActionTypes => {
   let feeds: Feed[] = store.getState().feed.feeds.slice();
   let index = feeds.findIndex(feed => feed.id == feedId);
   feeds[index].isLoved = !feeds[index].isLoved;
+  feeds[index].isLoved ? feeds[index].love++ : feeds[index].love--;
   return {
     type: LOVE_FEED,
     data: feeds

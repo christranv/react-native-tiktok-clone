@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Colors from '../../constants/Colors';
 import abbreviateNum from '../../utils/abbreviateNum';
+import { gw } from '../../utils/responsive';
 
 interface Props {
   style: StyleProp<ViewStyle>;
@@ -100,9 +101,9 @@ const styles = StyleSheet.create({
   },
   profImage: {
     position: 'absolute',
-    width: '94%',
-    height: '10%',
-    marginTop: 19,
+    width: '100%',
+    height: '11%',
+    marginTop: 14,
     borderRadius: 30,
   },
   icon: {
