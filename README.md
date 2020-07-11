@@ -2,7 +2,8 @@
 TikTok mobile app HomeScreen clone using React Native & Redux & TypeScript
 
 ## Preview
-- video: https://www.youtube.com/embed/jBX_8pNVwLY
+![homescreen](/preview/Home.png)
+- video: https://www.youtube.com/watch?v=un9T2G5EB-A
 
 ## How to use
 - Clone
